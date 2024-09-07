@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: rgb(134, 130, 125);
+        color: darkslategray;
+        font-family: calibri, arial, monospace;
+    }
+
+    .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .outerBorder{
+        background-color: darkgreen;
+        width: 100rem;
+        height: 100rem;
+    }
+</style>
+<body>
+
+    <div class="container">
+        <div class="outerBorder">
+            <canvas width = "500" height = "600" id="myCanvas"></canvas>
+        </div>
+    </div>
+    <script src="snake.js"></script>
+</body>
+</html>
