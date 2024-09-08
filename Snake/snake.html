@@ -7,7 +7,7 @@
 </head>
 <style>
     body {
-        background-color: rgb(134, 130, 125);
+        background-color: rgba(40,43,58,255);
         color: darkslategray;
         font-family: calibri, arial, monospace;
     }
@@ -20,17 +20,21 @@
     }
 
     .outerBorder{
-        background-color: darkgreen;
-        width: 100rem;
-        height: 100rem;
+        background-color: #b1d908;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    #myCanvas{
+        border: 2px solid rgb(18, 18, 18);
     }
 </style>
 <body>
 
     <div class="container">
-        <div class="outerBorder">
+        <span class="outerBorder">
             <canvas width = "500" height = "600" id="myCanvas"></canvas>
-        </div>
+        </span>
     </div>
     <script src="snake.js"></script>
 </body>

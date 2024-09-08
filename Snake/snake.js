@@ -1,6 +1,5 @@
 "use strict";
 
-
 //Klasser
 class Rectangle{
     constructor(width, height, xpos, ypos){
@@ -76,11 +75,11 @@ class Player extends Rectangle{
         console.log(this.xpos, this.ypos);  //Fjern denne
     }
 
-    checkBorderCollison(ctx){
+    checkBorderCollison(){
         let top = this.ypos < 0;
-        let bottom = this.ypos+this.height+borderWidth-1 > cHeight;
-        let left = this.xpos-borderWidth+1 < 0;
-        let right = this.xpos+this.width+borderWidth-1 > cWidth;
+        let bottom = this.ypos+this.height+BORDERWIDTH-1 > cHeight;
+        let left = this.xpos-BORDERWIDTH+1 < 0;
+        let right = this.xpos+this.width+BORDERWIDTH-1 > cWidth;
 
         //Hvis vi treffer border 
         if(top || bottom || left || right){
@@ -94,9 +93,26 @@ class Player extends Rectangle{
 class Snack extends Rectangle {
     static colourArr = ["white", "rgb(221, 21, 51)"];
 
-    constructor(width, height, xpos, ypos, colour){
-        super(width, height, xpos, ypos);
-        this.colour = colourArr[Math.floor(Math.random()*2)];
+    constructor(width, height, xMin, xMax, yMin, yMax){
+        super(width, height);
+
+        this.xpos = getRandom(xMin, xMax);
+        this.ypos = getRandom(yMin, yMax);
+        this.colour = Snack.colourArr[Math.floor(Math.random()*2)];
+    }
+
+    isSnackEaten(ctx, player){
+        let fromBottom = player.ypos+1 < this.ypos+this.height && (player.xpos >= this.xpos || player.xpos <= this.xpos+this.width); //oiuawhdiwahdhwao
+        console.log(fromBottom);
+        /*
+        if(true){
+            //Tegn over snack
+
+            //Increase poeng
+
+            //Lag ny
+        }
+        */    
     }
 }
 
@@ -108,11 +124,19 @@ let stageColour = "#b1d908";
 let cWidth = myCanvas.clientWidth;
 let cHeight = myCanvas.clientHeight;
 let gameOn = true;
-let borderWidth = +getComputedStyle(document.getElementById("myCanvas")).borderWidth.slice(0, 1);
+
+const BLOCK = 12;
+const BORDERWIDTH = +getComputedStyle(myCanvas).borderWidth.slice(0, 1);
+
+//Grense for hvor sncaks kan spawne.
+let xMin = BORDERWIDTH*2;
+let xMax = cWidth-xMin-BLOCK;
+let yMin = BORDERWIDTH*2;
+let yMax = cHeight-yMin-BLOCK;
 
 let stage = new Stage(cWidth, cHeight, 0, 0, stageColour);
-let player = new Player(12, 12, cWidth/2, cHeight/2, "rgb(70, 70, 70)");
-
+let player = new Player(BLOCK, BLOCK, cWidth/2, cHeight/2, "rgb(70, 70, 70)");
+let snack = new Snack(BLOCK, BLOCK, xMin, xMax, yMin, yMax);
 
 //Program
 //Adder keylistener på piltaster.
@@ -121,7 +145,10 @@ document.addEventListener("keydown", (e) => keyListener(e));
 //Setter opp bane
 stage.draw(ctx, stage.colour);
 player.drawPlayer(ctx);
+snack.draw(ctx, snack.colour);
 
+console.log(getRandom(0, 5));
+console.log(snack.xpos + " " + snack.ypos);
 gameLoop(); 
 
 
@@ -129,7 +156,8 @@ gameLoop();
 function gameLoop(){
     if(player.xSpeed != 0 || player.ySpeed != 0){
         player.drawPlayer(ctx);
-        player.checkBorderCollison(ctx);
+        player.checkBorderCollison();
+        snack.isSnackEaten(ctx, player);
     }
 
     if(gameOn){
@@ -146,4 +174,8 @@ function keyListener(e){
 
     //Hvis vi treffer en border så kanb vi ikke fortsette ved å gå mot grensen
     player.checkBorderCollison(ctx);
+}
+
+function getRandom(max, min){
+    return Math.floor(Math.random() * (max - min) + min);
 }
