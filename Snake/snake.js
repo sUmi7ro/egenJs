@@ -11,7 +11,7 @@ let gameOn = true;
 const BLOCK = 12;
 const BORDERWIDTH = +getComputedStyle(myCanvas).borderWidth.slice(0, 1);
 
-//Grense for hvor sncaks kan spawne.
+//Grense for hvor snacks kan spawne.
 let xMin = BORDERWIDTH*2;
 let xMax = cWidth-xMin-BLOCK;
 let yMin = BORDERWIDTH*2;
@@ -30,8 +30,8 @@ stage.draw(ctx, stage.colour);
 player.drawPlayer(ctx);
 snack.draw(ctx, snack.colour);
 
-console.log(getRandom(0, 5));
-console.log(snack.xpos + " " + snack.ypos);
+//console.log(getRandom(0, 5));
+//console.log(snack.xpos + " " + snack.ypos);
 gameLoop(); 
 
 
