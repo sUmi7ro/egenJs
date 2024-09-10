@@ -2,6 +2,7 @@ class Player extends Rectangle{
     xSpeed = 0;
     ySpeed = 0;
     maxSpeed = 1;
+    score = 0;
 
     constructor(width, height, xpos, ypos, colour){
         super(width, height, xpos, ypos);

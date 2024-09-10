@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'f'; /*a name to be used later*/
+    src: url("https://www.dafont.com/silkscreen.font");
+}
+body {
+    background-color: rgba(40,43,58,255);
+    color: darkslategray;
+    font-family: calibri, arial, monospace;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.outerBorder{
+    background-color: #b1d908;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#myCanvas{
+    border: 2px solid rgb(18, 18, 18);
+}
+
+.scoreContainer{
+    height: 5vh;
+}
+
+.content{ 
+    color: rgba(240, 248, 255, 0.938);
+    font-size: 19px;
+}
+
+#score{
+    float: left;
+}
+
+#hScore{
+    float: right;
+}

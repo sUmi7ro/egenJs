@@ -3,6 +3,8 @@
 //Variabler
 let myCanvas = document.getElementById("myCanvas");
 let ctx = myCanvas.getContext("2d");
+let txtScore = document.getElementById("score");
+let txtHScore = document.getElementById("hScore");
 let stageColour = "#b1d908";
 let cWidth = myCanvas.clientWidth;
 let cHeight = myCanvas.clientHeight;
@@ -29,18 +31,24 @@ document.addEventListener("keydown", (e) => keyListener(e));
 stage.draw(ctx, stage.colour);
 player.drawPlayer(ctx);
 snack.draw(ctx, snack.colour);
+if(localStorage.hScore == null){
+    localStorage.hScore = 0;
+}
 
-//console.log(getRandom(0, 5));
-//console.log(snack.xpos + " " + snack.ypos);
 gameLoop(); 
 
 
 //Funksjoner
 function gameLoop(){
+    
+    if(localStorage.hScore < player.score) localStorage.hScore = player.score;
+    txtHScore.innerHTML = `High Score: ${localStorage.hScore}`;
+
     if(player.xSpeed != 0 || player.ySpeed != 0){
         player.drawPlayer(ctx);
         player.checkBorderCollison();
         snack.isSnackEaten(ctx, player);
+        txtScore.innerHTML = `Score: ${player.score}`;
     }
 
     if(gameOn){

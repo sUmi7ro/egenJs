@@ -4,35 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<style>
-    body {
-        background-color: rgba(40,43,58,255);
-        color: darkslategray;
-        font-family: calibri, arial, monospace;
-    }
 
-    .container{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-    }
-
-    .outerBorder{
-        background-color: #b1d908;
-        padding: 10px;
-        box-sizing: border-box;
-    }
-
-    #myCanvas{
-        border: 2px solid rgb(18, 18, 18);
-    }
-</style>
 <body>
 
     <div class="container">
         <span class="outerBorder">
+            <div class="scoreContainer">
+                <h1 class="content" id="score">Score: </h1>
+                <h1 class="content" id="hScore">High Score:</h1>
+            </div>
             <canvas width = "500" height = "600" id="myCanvas"></canvas>
         </span>
     </div>
@@ -41,5 +23,6 @@
     <script src="Classes/Player.js"></script>
     <script src="Classes/Snack.js"></script>
     <script src="snake.js"></script>
+    
 </body>
 </html>

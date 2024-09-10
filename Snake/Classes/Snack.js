@@ -42,10 +42,11 @@ class Snack extends Rectangle {
             snack.draw(ctx, stageColour);
 
             //Increase poeng
+            player.score++;
 
             //Lag ny
-            snack = new Snack(snack.width, snack.height, snack.xMin, snack.xMax, snack.yMin, snack.yMin);
-
+            snack = new Snack(snack.width, snack.height, snack.xMin, snack.xMax, snack.yMin, snack.yMax);
+            
             snack.draw(ctx,snack.colour);
         }
             
